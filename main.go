@@ -8,24 +8,20 @@ import (
 func main() {
 
 	conferenceName := "Otaku conference"
-	const conferenceTicket = 50
+
+	greetUser(conferenceName)
+}
+
+// func exit(){
+// 	break
+// }
+
+func bookTicket() {
+
 	remainingTickets := 50
 	var firstName, lastName, email string
 	var userTickets, choice int
-
-	greetUser(conferenceName)
-
-	// var menuSelect uint
-	// switch menuSelect {
-	// case 1:
-	// 	//Book ticket
-	// case 2:
-	// 	//admin panel
-	// case 3:
-	// 	//Exit
-	// default:
-	//  fmt.Print("No valid selection")
-	// }
+	const conferenceTicket = 50
 
 	fmt.Printf("\nThere are %v tickets available\n\n", remainingTickets)
 
@@ -118,26 +114,31 @@ func main() {
 			//fmt.Print("Your input data is invalid, try again\n\n")
 		}
 	}
+	//fmt.Printf("\nThe booked users are %v\n", firstNames)
 }
 
-// func exit(){
-// 	break
-// }
-
-// func admin-panel(){
-// 	fmt.Printf("\nThe booked users are %v\n", firstNames)
-// }
-
 func greetUser(conferenceName string) {
+	var menuSelect uint
 	fmt.Println("Welcome to our conference")
 	fmt.Printf("Hello! Welcome to %v booking application!\n", conferenceName)
-	fmt.Print("Get your tickets here to attend!")
+	fmt.Println("Get your tickets here to attend!")
+
+	fmt.Println("What would you like to do today?")
+	fmt.Print("(1) Book ticket \n(2) Admin Panel \n(3) Exit")
+	fmt.Scan(&menuSelect)
+
+	switch menuSelect {
+	case 1:
+		bookTicket()
+	case 2:
+		//admin panel
+	default:
+		fmt.Print("No valid selection")
+	}
+
 }
 
 func userDetails(firstName string, lastName string, email string, userTickets uint) {
-	//userDetails()
-	// var firstName, lastName, email string
-	// var userTickets, choice int
 
 	fmt.Print("Please enter your first name: ")
 	fmt.Scan(&firstName)
