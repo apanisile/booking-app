@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strings"
 )
 
 func adminPanel() {
@@ -31,8 +30,7 @@ func checkTicket() {
 func checkUsers() []string {
 	firstNames := []string{}
 	for _, booking := range bookings {
-		var names = strings.Fields(booking)
-		firstNames = append(firstNames, names[0])
+		firstNames = append(firstNames, booking["firstName"])
 	}
 
 	fmt.Printf("The booked users are %v\n", firstNames)
