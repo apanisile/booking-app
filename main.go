@@ -50,29 +50,23 @@ func greetUser() {
 func userDetails() (string, string, string, uint) {
 	var firstName, lastName, email string
 	var userTickets uint
-	//var choice uint
-	//const conferenceTicket = 50
 
-	fmt.Print("\nPlease enter your first name: ")
-
+	fmt.Print("\nPlease enter your first name: \n")
 	fmt.Scan(&firstName)
 
-	fmt.Print("Please enter your last name: ")
+	fmt.Print("Please enter your last name: \n")
 	fmt.Scan(&lastName)
 
-	fmt.Print("Enter your email address: ")
+	fmt.Print("Enter your email address: \n")
 	fmt.Scan(&email)
 
-	fmt.Print("How mamy tickets do you want to buy: ")
+	fmt.Print("How mamy tickets do you want to buy: \n")
 	fmt.Scan(&userTickets)
 
-	//fmt.Printf("\nThank you %v for booking %v tickets! You will recieve a confirmation in your email at %v\n", firstName, userTickets, email)
 	return firstName, lastName, email, userTickets
 }
 
 func bookTicket() {
-
-	//fmt.Printf("\nThere are %v tickets available\n\n", remainingTickets)
 
 	for remainingTickets > 0 && len(bookings) < 50 {
 		firstName, lastName, email, userTickets := userDetails()
@@ -104,7 +98,7 @@ func bookTicket() {
 				fmt.Scan(&choice)
 				if choice == 1 {
 					userTickets = remainingTickets
-					fmt.Printf("\nThank you %v for booking %v ticket(s)! You will receive a confirmation in your email at %v\n", firstName, userTickets, email)
+					fmt.Printf("\nThank you %v for booking %v ticket(s). You will receive a confirmation in your email at %v\n", firstName, userTickets, email)
 					if remainingTickets == 0 {
 						//end program
 						fmt.Println("\nThe conference is booked out. Come again next year!")
@@ -133,38 +127,6 @@ func bookTicket() {
 
 }
 
-func adminPanel() {
-	var adminSelect uint
-	fmt.Println("What would you like to do?")
-	fmt.Println("(1) List of registered users \n(2) Check remaining tickets \n(3) Top up tickets")
-	fmt.Scan(&adminSelect)
-	switch adminSelect {
-	case 1:
-		checkPanel()
-	case 2:
-		checkTicket()
-	case 3:
-		break
-	default:
-		fmt.Print("No valid selection")
-	}
-}
-
-func checkTicket() {
-	fmt.Printf("There are %v tickets available", remainingTickets)
-
-}
-func checkPanel() []string {
-	firstNames := []string{}
-	for _, booking := range bookings {
-		var names = strings.Fields(booking)
-		firstNames = append(firstNames, names[0])
-	}
-
-	fmt.Printf("The booked users are %v\n", firstNames)
-	return firstNames
-}
-
 func checkValidation(firstName string, lastName string, email string, userTickets uint) (bool, bool, bool) {
 	isValidName := len(firstName) >= 2 && len(lastName) >= 2
 	isValidEmail := strings.Contains(email, "@")
@@ -183,7 +145,6 @@ func moreTickets(firstName string, userTickets uint, email string) {
 
 			fmt.Print("How many tickets do you want to buy: ")
 			fmt.Scan(&extraTickets)
-			fmt.Printf("extra tickets: %v   usertickets: %v   remainingtickets: %v", extraTickets, userTickets, remainingTickets)
 			if extraTickets <= remainingTickets {
 				userTickets = extraTickets + userTickets
 				fmt.Printf("\nThank you %v for booking %v extra ticket(s)! You will receive a confirmation in your email at %v\n", firstName, extraTickets, email)
@@ -215,7 +176,21 @@ func ticketConfirmation(firstName string, lastName string, email string, userTic
 	//use sql here
 	bookings = append(bookings, firstName+" "+lastName)
 
-	fmt.Printf("\nThank you %v for booking %v ticket(s)! You will receive a confirmation in your email at %v\n", firstName, userTickets, email)
+	fmt.Printf("\nThank you %v for booking %v ticket(s). You will receive a confirmation in your email at %v\n", firstName, userTickets, email)
 	fmt.Printf("\nThere are %v ticket(s) left\n", remainingTickets)
 
+}
+
+func continueMenu() {
+	var continueOption uint
+	fmt.Println("Do you want to perform any other operation?")
+	fmt.Scan(&continueOption)
+	switch continueOption {
+	case 1:
+		main()
+	case 2:
+		break
+	default:
+		fmt.Print("No valid selection")
+	}
 }
