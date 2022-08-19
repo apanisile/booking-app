@@ -43,6 +43,7 @@ func bookTicket() {
 				} else {
 					sendTicket(userTickets, firstName, email)
 					fmt.Print("Bye!")
+					abegWait()
 					main()
 					break
 				}

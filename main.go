@@ -38,12 +38,11 @@ func greetUser() {
 
 	switch menuSelect {
 	case 1:
-		//fmt.Println("#######################################################")
-		fmt.Println("please wait...")
-		time.Sleep(4 * time.Second)
+		// fmt.Println("please wait...")
+		abegWait()
 		bookTicket()
 	case 2:
-		time.Sleep(4 * time.Second)
+		abegWait()
 		adminPanel()
 	case 3:
 		//exit
@@ -142,6 +141,7 @@ func continueMenu() {
 	fmt.Scan(&continueOption)
 	switch continueOption {
 	case 1:
+		abegWait()
 		main()
 	case 2:
 		break
@@ -151,15 +151,16 @@ func continueMenu() {
 }
 
 func sendTicket(userTickets uint, firstName string, email string) {
+	abegWait()
 	var ticket = fmt.Sprintf("%v tickets for %v", userTickets, firstName)
 	fmt.Println("#######################################################")
 	fmt.Printf("Sending ticket:\n %v to %v\n\n", ticket, email)
 	fmt.Println("#######################################################")
 }
 
-// func abegWait(){
-// 	x := 5
-// 	for x > 0{
-// 		fmt.Println("#")
-// 	}
-// }
+func abegWait() {
+	for x := 0; x <= 10; x++ {
+		time.Sleep(1 * time.Second)
+		fmt.Print("#")
+	}
+}
